@@ -1,37 +1,86 @@
+import LandingNavbar from "./serverComponents/navbar/LandingNavbar";
 import Link from "next/link";
+import { FaBox, FaChartLine, FaUsers, FaShieldAlt } from "react-icons/fa";
 
 export default function HomePage() {
+  const features = [
+    {
+      icon: FaBox,
+      title: "Gestión de Inventario",
+      description: "Controla tu stock de manera eficiente con herramientas avanzadas"
+    },
+    {
+      icon: FaChartLine,
+      title: "Reportes en Tiempo Real",
+      description: "Visualiza el estado de tu inventario con dashboards interactivos"
+    },
+    {
+      icon: FaUsers,
+      title: "Colaboración en Equipo",
+      description: "Trabaja con tu equipo de forma coordinada y eficiente"
+    },
+    {
+      icon: FaShieldAlt,
+      title: "Seguridad Avanzada",
+      description: "Protege tu información con las mejores prácticas de seguridad"
+    }
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
+    <div className="min-h-screen">
+      <LandingNavbar />
+      
+      {/* Hero Section */}
+      <main className="max-w-8xl mx-auto px-4 py-12">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+            Gestiona tu Inventario con
+            <span className="text-gradient-animated block">Inventra</span>
+          </h1>
+          <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+            La solución completa para el manejo eficiente de inventarios. 
+            Controla, analiza y optimiza tu stock con herramientas profesionales.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/register">
+              <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105">
+                Comenzar Gratis
+              </button>
+            </Link>
+            <Link href="/login">
+              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-gray-900">
+                Ya tengo cuenta
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
+              <feature.icon className="text-4xl text-white mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+              <p className="text-white/70">{feature.description}</p>
             </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-12">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            ¿Listo para optimizar tu inventario?
+          </h2>
+          <p className="text-white/80 mb-8">
+            Únete a miles de empresas que ya confían en Inventra
+          </p>
+          <Link href="/register">
+            <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:scale-105">
+              Crear Cuenta Ahora
+            </button>
           </Link>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
