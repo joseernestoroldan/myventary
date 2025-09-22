@@ -1,12 +1,11 @@
 import { string, object } from "zod";
 
-export const signUpSchema = object({
+export const registerSchema = object({
   email: string({ required_error: "Email is required" }).email("Invalid email address"),
-
+  name: string({ required_error: "Name is required" }).max(32, "Name must be at most 32 characters long"),
   password: string({ required_error: "Password is required" })
     .min(8, "Password must be at least 8 characters long")
     .max(32, "Password must be at most 32 characters long"),
-  
   confirmPassword: string({ required_error: "Confirm password is required" }),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
